@@ -5,24 +5,24 @@ from datetime import datetime
 
 def test_add_reading_to_tire():
     tire = Tire()
-    tire.add_pressure(28, datetime(12, 05, 2007))
-    tire.add_tread_depth(5, datetime(1, 05, 2007))
+    tire.record_pressure(28, datetime(2007, 5, 12))
+    tire.record_tread_depth(5, datetime(2007, 5, 1))
 
     pressure_reading = tire.current_pressure
     assert pressure_reading.reading == 28
-    assert pressure_reading.timestamp == datetime(12,05,2007)
+    assert pressure_reading.timestamp == datetime(2007, 5, 12)
 
     tread_depth_reading = tire.current_depth
     assert tread_depth_reading.reading == 5
-    assert tread_depth_reading.timestamp == datetime(1, 05, 2007)
+    assert tread_depth_reading.timestamp == datetime(2007, 5, 1)
 
 def test_add_historical_reading_to_tire():
     tire = Tire()
 
-    pressures_dates = [datetime(12, 08, year) for year in range(2010, 2025)]
+    pressures_dates = [datetime(year, 8, 12,) for year in range(2010, 2025)]
 
     for date in pressures_dates:
-        tire.add_pressure(28, date)
+        tire.record_pressure(28, date)
 
     pressures = tire.pressure_history
 
@@ -47,8 +47,8 @@ def test_car_get_details():
     depth = 5
     for side in car.tires:
         for tire in side:
-            tire.add_pressure(pressure, datetime(6,10,2026))
-            tire.add_tread_depth(depth, datetime(6,10,2026))
+            tire.add_pressure(pressure, datetime(2026, 10, 6))
+            tire.add_tread_depth(depth, datetime(2026, 10, 6))
             depth += 5
             pressure += 20
 
