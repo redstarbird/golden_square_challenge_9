@@ -5,15 +5,18 @@ class Car():
     # User-facing properties
 
     def __init__(self):
-        # parameters:
-        # None
-        # Side effects:
-        # Initialises self.tires as a two dimensional array with 4 tires in the format [2][2]
-        pass
+        self.tires = [[Tire(), Tire()],[Tire(), Tire()]]
 
     def get_details(self) -> list[dict]:
-        # parameters
-        # None
-        # Returns
-        # Four element array countaining dictionaries with the details of each tire
-        pass
+        details_array = []
+        position_names = ['front left', 'front right', 'back left', 'back right']
+
+        i = 0
+        for side in self.tires:
+            for tire in side:
+                tire_dict = {'position': position_names[i], 'pressure': tire.current_pressure, 'depth': tire.current_depth}
+                details_array.append(tire_dict)
+                i += 1
+            
+
+        return details_array

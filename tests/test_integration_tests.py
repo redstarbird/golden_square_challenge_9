@@ -47,26 +47,26 @@ def test_car_get_details():
     depth = 5
     for side in car.tires:
         for tire in side:
-            tire.add_pressure(pressure, datetime(2026, 10, 6))
-            tire.add_tread_depth(depth, datetime(2026, 10, 6))
+            tire.record_pressure(pressure, datetime(2026, 10, 6))
+            tire.record_tread_depth(depth, datetime(2026, 10, 6))
             depth += 5
             pressure += 20
 
     details = car.get_details()
 
 
-    assert details[0].position == "front left"
-    assert details[0].pressure.reading == 20
-    assert details[0].depth.reading == 5
+    assert details[0]['position'] == "front left"
+    assert details[0]['pressure'].reading == 20
+    assert details[0]['depth'].reading == 5
 
-    assert details[1].position == "front right"
-    assert details[1].pressure.reading == 40
-    assert details[1].depth.reading == 10
+    assert details[1]['position'] == "front right"
+    assert details[1]['pressure'].reading == 40
+    assert details[1]['depth'].reading == 10
 
-    assert details[2].position == "back left"
-    assert details[2].pressure.reading == 60
-    assert details[2].depth.reading == 15
+    assert details[2]['position'] == "back left"
+    assert details[2]['pressure'].reading == 60
+    assert details[2]['depth'].reading == 15
 
-    assert details[3].position == "back right"
-    assert details[3].pressure.reading == 80
-    assert details[3].depth.reading == 20
+    assert details[3]['position'] == "back right"
+    assert details[3]['pressure'].reading == 80
+    assert details[3]['depth'].reading == 20
